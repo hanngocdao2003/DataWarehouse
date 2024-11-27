@@ -49,7 +49,7 @@ public class ETLService {
         String user = prop.getProperty("user_local");
         String pass = prop.getProperty("pass_local");
 
-        //
+        // ket noi db control, staging
         if (location.equalsIgnoreCase("control")) {
             dbName = prop.getProperty("dbName_control");
         } else if (location.equalsIgnoreCase("staging")) {

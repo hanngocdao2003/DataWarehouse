@@ -33,8 +33,24 @@ public class Extract {
                 System.out.println("Process is running");
                 etlService.logFile("Process is running");
 
-                //1.4. Load source config
-
+                //1.4. Load source config & 1.5. thêm soure vào table file_configs
+                List<Integer> ids_config = configLoader.processConfigFile();
+                System.out.println(ids_config);
+                ExecutorService executor = Executors.newFixedThreadPool(2);
+                for(Integer id_config : ids_config) {
+                    executor.submit(
+                            () -> {
+                                File_configs fileConfigs = null;
+                               try {
+                                   // 1.5 thanh cong
+                                   fileConfigs = File_configsDAO.getInstance().check(id_config);
+                               } catch (IOException e) {
+                                   throw new RuntimeException(e);
+                               }
+                                System.out.println(fileConfigs);
+                            }
+                    );
+                }
 
             }
             else {

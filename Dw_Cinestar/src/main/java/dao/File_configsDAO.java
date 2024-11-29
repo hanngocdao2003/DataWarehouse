@@ -16,8 +16,8 @@ public class File_configsDAO {
 
     public boolean checkProcess(String status, String destination) throws IOException {
         String query = "SELECT status, destination " +
-                "FROM file_datas " +
-                "JOIN file_configs " +
+                "FROM control.file_datas " +
+                "JOIN control.file_configs " +
                 "ON file_configs.id = file_datas.id_config " +
                 "WHERE status = ? AND destination = ?";
 
@@ -47,7 +47,7 @@ public class File_configsDAO {
     public File_configs check(int id_config) throws IOException {
         File_configs fileConfigs = new File_configs();
         String query = "SELECT * " +
-                "FROM file_configs " +
+                "FROM control.file_configs " +
                 "WHERE id = ? ";
 
         try (PreparedStatement preparedStatement = etlService.getConnection("control").prepareStatement(query)) {
@@ -87,7 +87,7 @@ public class File_configsDAO {
     // 1.5. thêm source vào bảng file_configs
     public int addFile_configs(String source_url,String folder) throws IOException  {
         long id_config = -1;
-        String query = "INSERT INTO file_configs (description, source_path, location, format, `seperator`, colums, destination, created_at, update_at, create_by, update_by) " +
+        String query = "INSERT INTO control.file_configs (description, source_path, location, format, `seperator`, colums, destination, created_at, update_at, create_by, update_by) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement preparedStatement = etlService.getConnection("control").prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {

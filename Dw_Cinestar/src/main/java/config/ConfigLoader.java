@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Properties;
 
 public class ConfigLoader {
-    ETLService log;
+    ETLService log = new ETLService();
     private static final String CONFIG_PATH = "config.properties";
 
     public Properties loadConfig() throws IOException {
@@ -34,7 +34,7 @@ public class ConfigLoader {
     }
 
     // Đọc và xử lý cấu hình từ tệp properties
-    public List<Integer> processConfigFile() throws SQLException, IOException {
+    public List<Integer> processConfigFile() throws IOException {
 
         List<Integer> ids_config = new ArrayList<>();
 
@@ -62,7 +62,7 @@ public class ConfigLoader {
             }
             System.out.println("urlForderLocation: " + urlForderLocation);
         } catch (IOException e) {
-
+            //1.5 log khi khong thanh cong
             log.logFile("Add config source Failed");
         }
 
@@ -75,14 +75,27 @@ public class ConfigLoader {
 
 
     //test
-public static void main(String[] args) {
-    ConfigLoader configLoader = new ConfigLoader();
+public static void main(String[] args) throws SQLException {
+    // Tạo đối tượng ConfigLoader hoặc lớp có chứa phương thức processConfigFile
+    ConfigLoader configLoader = new ConfigLoader(); // Giả sử ConfigLoader chứa phương thức processConfigFile
+
     try {
-        Properties prop = configLoader.loadConfig();
-        // In ra một thuộc tính ví dụ
-        System.out.println("Database URL: " + prop.getProperty("url_local"));
+        // Gọi phương thức processConfigFile để thêm cấu hình vào cơ sở dữ liệu
+        List<Integer> ids = configLoader.processConfigFile();
+
+        // In ra danh sách ID đã được thêm vào cơ sở dữ liệu
+        if (!ids.isEmpty()) {
+            System.out.println("Successfully added the following config IDs: ");
+            for (Integer id : ids) {
+                System.out.println("Config ID: " + id);
+            }
+        } else {
+            System.out.println("No config IDs were added.");
+        }
+
     } catch (IOException e) {
-        System.err.println("Error loading configuration: " + e.getMessage());
+        System.err.println("IOException occurred while processing config file: " + e.getMessage());
     }
 }
 }
+

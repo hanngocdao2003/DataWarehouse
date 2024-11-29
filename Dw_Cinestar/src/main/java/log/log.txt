@@ -8,3 +8,57 @@ Found matching record with status: N and destination: F
 HH:mm:ss dd/MM/yyyy - 21:18:44 26/11/2024
 This is a test log message.	
 HH:mm:ss dd/MM/yyyy - 21:19:21 26/11/2024
+No process is running	
+HH:mm:ss dd/MM/yyyy - 16:34:59 29/11/2024
+Found matching record with status: N and destination: F	
+HH:mm:ss dd/MM/yyyy - 16:37:08 29/11/2024
+Found matching record with status: N and destination: F	
+HH:mm:ss dd/MM/yyyy - 16:39:12 29/11/2024
+Found matching record with status: N and destination: F	
+HH:mm:ss dd/MM/yyyy - 16:47:41 29/11/2024
+Process is running	
+HH:mm:ss dd/MM/yyyy - 16:48:20 29/11/2024
+Error loading configuration: null	
+HH:mm:ss dd/MM/yyyy - 16:48:20 29/11/2024
+Process is running	
+HH:mm:ss dd/MM/yyyy - 16:49:37 29/11/2024
+Error loading configuration: null	
+HH:mm:ss dd/MM/yyyy - 16:49:37 29/11/2024
+Erro addFile_configsUnknown column 'description' in 'field list'	
+HH:mm:ss dd/MM/yyyy - 16:57:06 29/11/2024
+Thêm mới thất bại.	
+HH:mm:ss dd/MM/yyyy - 16:57:06 29/11/2024
+Process is running	
+HH:mm:ss dd/MM/yyyy - 17:01:54 29/11/2024
+Error loading configuration: null	
+HH:mm:ss dd/MM/yyyy - 17:01:54 29/11/2024
+Process is running	
+HH:mm:ss dd/MM/yyyy - 17:03:50 29/11/2024
+Error loading configuration: null	
+HH:mm:ss dd/MM/yyyy - 17:03:50 29/11/2024
+Add config source Failed: config.properties (The system cannot find the file specified)	
+HH:mm:ss dd/MM/yyyy - 17:13:39 29/11/2024
+Add config source Failed: config.properties (The system cannot find the file specified)	
+HH:mm:ss dd/MM/yyyy - 17:14:35 29/11/2024
+Process is running	
+HH:mm:ss dd/MM/yyyy - 17:28:22 29/11/2024
+Error loading configuration: config.properties (The system cannot find the file specified)	
+HH:mm:ss dd/MM/yyyy - 17:28:22 29/11/2024
+Add config source Failed	
+HH:mm:ss dd/MM/yyyy - 17:38:01 29/11/2024
+Add config source Failed	
+HH:mm:ss dd/MM/yyyy - 17:38:32 29/11/2024
+Add config source Failed	
+HH:mm:ss dd/MM/yyyy - 17:38:43 29/11/2024
+Process is running	
+HH:mm:ss dd/MM/yyyy - 17:39:03 29/11/2024
+Add config source Failed	
+HH:mm:ss dd/MM/yyyy - 17:39:03 29/11/2024
+Process is running	
+HH:mm:ss dd/MM/yyyy - 17:39:59 29/11/2024
+Add config source Failed	
+HH:mm:ss dd/MM/yyyy - 17:39:59 29/11/2024
+Erro addFile_configsUnknown column 'description' in 'field list'	
+HH:mm:ss dd/MM/yyyy - 17:44:30 29/11/2024
+Found matching record with status: N and destination: F	
+HH:mm:ss dd/MM/yyyy - 17:45:58 29/11/2024

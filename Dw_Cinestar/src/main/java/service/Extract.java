@@ -28,8 +28,7 @@ public class Extract {
             // 1.3. Ktra tien trinh dang chay
             Extract extract = new Extract();
 
-            File_configsDAO file_configsDAO = new File_configsDAO();
-            if(file_configsDAO.checkProcess("P","F")) {
+            if(File_configsDAO.getInstance().checkProcess("P","F")) {
                 System.out.println("Process is running");
                 etlService.logFile("Process is running");
 
@@ -42,12 +41,22 @@ public class Extract {
                             () -> {
                                 File_configs fileConfigs = null;
                                try {
-                                   // 1.5 thanh cong
+                                   // 1.6 kem tra them thanh cong or not
                                    fileConfigs = File_configsDAO.getInstance().check(id_config);
                                } catch (IOException e) {
                                    throw new RuntimeException(e);
                                }
                                 System.out.println(fileConfigs);
+
+                               // 1.7 Lấy id của file_config
+                                int id_fileConfigs = (int) fileConfigs.getId();
+
+                                // 1.8 Run script crawl data
+                                try {
+                                    String csvFileName = runScript(fileConfigs.getSource_path());
+                                } catch (IOException e) {
+                                    throw new RuntimeException("Lỗi khi chạy script cho URL: " + fileConfigs.getSource_path(), e);
+                                }
                             }
                     );
                 }
@@ -64,5 +73,39 @@ public class Extract {
         }
 
     }
+
+    public static String runScript(String urlSource) throws IOException {
+        ETLService etlService = new ETLService();
+        String csvFile = null;
+
+        // Kiểm tra nếu URL khớp với "cinestart.com"
+        if ("cinestar.com".equalsIgnoreCase(urlSource)) {
+            System.out.println("Đang chạy script cho: " + urlSource);
+            // Đường dẫn đến script Python
+            String scriptPath = "src/main/java/crawl/crawl1.py";
+
+
+            // Thực thi script và nhận kết quả (tên file CSV)
+            csvFile = new RunPythonScript().runScript(scriptPath);
+
+
+            if (csvFile != null) {
+
+                System.out.println("Chạy script thành công, file CSV được tạo: " + csvFile);
+                etlService.logFile("Chạy script thành công, file CSV được tạo: " + csvFile);
+            } else {
+                // Nếu chạy script không thành công
+                System.out.println("Chạy script không thành công cho URL: " + urlSource);
+                etlService.logFile("Chạy script không thành công cho URL: " + urlSource);
+            }
+        } else {
+            // Nếu URL không hỗ trợ
+            System.out.println("URL không được hỗ trợ: " + urlSource);
+            etlService.logFile("URL không được hỗ trợ: " + urlSource);
+        }
+
+        return csvFile; // Trả về tên file nếu thành công, null nếu thất bại
+    }
+
 
 }

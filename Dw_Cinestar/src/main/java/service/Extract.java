@@ -33,10 +33,10 @@ public class Extract {
                 etlService.logFile("Process is running");
 
                 //1.4. Load source config & 1.5. thêm soure vào table file_configs
-                List<Integer> ids_config = configLoader.processConfigFile();
-                System.out.println(ids_config);
+                int id_config = configLoader.processConfigFile();
+                System.out.println(id_config);
                 ExecutorService executor = Executors.newFixedThreadPool(2);
-                for(Integer id_config : ids_config) {
+
                     executor.submit(
                             () -> {
                                 File_configs fileConfigs = null;
@@ -62,7 +62,7 @@ public class Extract {
                                 }
                             }
                     );
-                }
+
 
             }
             else {

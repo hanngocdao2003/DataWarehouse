@@ -105,3 +105,25 @@ Chạy script thành công, file CSV được tạo: movie_name  ...  Date_crawl
 HH:mm:ss dd/MM/yyyy - 19:52:53 29/11/2024
 Dữ liệu đã được thêm thành công vào bảng file_configs với ID: 6	
 HH:mm:ss dd/MM/yyyy - 20:07:12 29/11/2024
+Process is running	
+HH:mm:ss dd/MM/yyyy - 20:25:37 29/11/2024
+Chạy script thành công, file CSV được tạo: movie_name  ...  Date_crawl
+0  HÀNH TRÌNH CỦA MOANA 2 (2D) PĐ  ...  2024-11-29
+1  HÀNH TRÌNH CỦA MOANA 2 (2D) PĐ  ...  2024-11-29
+2  HÀNH TRÌNH CỦA MOANA 2 (2D) PĐ  ...  2024-11-29
+3  HÀNH TRÌNH CỦA MOANA 2 (2D) PĐ  ...  2024-11-29
+4  HÀNH TRÌNH CỦA MOANA 2 (2D) PĐ  ...  2024-11-29
+
+[5 rows x 16 columns]	
+HH:mm:ss dd/MM/yyyy - 20:31:08 29/11/2024
+Process is running	
+HH:mm:ss dd/MM/yyyy - 20:46:01 29/11/2024
+Chạy script thành công, file CSV được tạo: movie_name  ...  Date_crawl
+0  HÀNH TRÌNH CỦA MOANA 2 (2D) PĐ  ...  2024-11-29
+1  HÀNH TRÌNH CỦA MOANA 2 (2D) PĐ  ...  2024-11-29
+2  HÀNH TRÌNH CỦA MOANA 2 (2D) PĐ  ...  2024-11-29
+3  HÀNH TRÌNH CỦA MOANA 2 (2D) PĐ  ...  2024-11-29
+4  HÀNH TRÌNH CỦA MOANA 2 (2D) PĐ  ...  2024-11-29
+
+[5 rows x 16 columns]	
+HH:mm:ss dd/MM/yyyy - 20:51:36 29/11/2024

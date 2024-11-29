@@ -34,11 +34,10 @@ public class ConfigLoader {
     }
 
     // Đọc và xử lý cấu hình từ tệp properties
-    public List<Integer> processConfigFile() throws IOException {
-
-        List<Integer> ids_config = new ArrayList<>();
+    public int processConfigFile() throws IOException {
 
         InputStream input = null;
+        long id_config = -1;
         try {
             ConfigLoader configLoader = new ConfigLoader();
             Properties prop = configLoader.loadConfig();
@@ -47,18 +46,16 @@ public class ConfigLoader {
             String urlSourceValue = prop.getProperty("url_source");
             String urlForderLocation = prop.getProperty("folder_location");
 
-                // 1.5. thêm source vào bảng file_configs
-                int id_config = File_configsDAO.getInstance().addFile_configs(urlSourceValue, urlForderLocation);
-                System.out.println("Inserted data_file_configs row with ID: " + id_config);
-                ids_config.add(id_config);
-
+            // 1.5. thêm source vào bảng file_configs
+             id_config = File_configsDAO.getInstance().addFile_configs(urlSourceValue, urlForderLocation);
+            System.out.println("Inserted data_file_configs row with ID: " + id_config);
             System.out.println("urlForderLocation: " + urlForderLocation);
         } catch (IOException e) {
             //1.5 log khi khong thanh cong
             log.logFile("Add config source Failed");
         }
 
-        return ids_config;
+        return (int) id_config;
     }
 
 //    public String getProperty(String key) {
@@ -73,16 +70,16 @@ public static void main(String[] args) throws SQLException {
 
     try {
         // Gọi phương thức processConfigFile để thêm cấu hình vào cơ sở dữ liệu
-        List<Integer> ids = configLoader.processConfigFile();
+       int id = configLoader.processConfigFile();
 
-        // In ra danh sách ID đã được thêm vào cơ sở dữ liệu
-        if (!ids.isEmpty()) {
-            System.out.println("Successfully added the following config IDs: ");
-            for (Integer id : ids) {
+        // In ra ID đã được thêm vào cơ sở dữ liệu
+        if (id != 0) {
+            System.out.println("Successfully added the following config ID: ");
+
                 System.out.println("Config ID: " + id);
-            }
+
         } else {
-            System.out.println("No config IDs were added.");
+            System.out.println("No config ID were added.");
         }
 
     } catch (IOException e) {

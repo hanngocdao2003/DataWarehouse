@@ -1,11 +1,13 @@
 package dao;
 
+import config.ConfigLoader;
 import model.File_configs;
 import service.ETLService;
 
 import java.io.IOException;
 import java.sql.*;
 import java.time.Instant;
+import java.util.Properties;
 
 public class File_configsDAO {
     ETLService etlService = new ETLService();
@@ -87,17 +89,17 @@ public class File_configsDAO {
     // 1.5. thêm source vào bảng file_configs
     public int addFile_configs(String source_url,String folder) throws IOException  {
         long id_config = -1;
-        String query = "INSERT INTO control.file_configs (description, source_path, location, format, `seperator`, colums, destination, created_at, update_at, create_by, update_by) " +
+        String query = "INSERT INTO control.file_configs (descript, source_path, source_location, format, seperator, colums, destination, created_at, update_at, create_by, update_by) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement preparedStatement = etlService.getConnection("control").prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
             String source_path = source_url;
             String location = folder;
-            Timestamp createdAt = Timestamp.from(Instant.now()); // Lấy ngày hiện tại
-            Timestamp updatedAt = null; // Chưa có thông tin về ngày cập nhật
-            String createdBy = "Duong";
-            String updatedBy = null; // Chưa có thông tin về người cập nhật
+            Timestamp created_at = Timestamp.from(Instant.now()); // Lấy ngày hiện tại
+            Timestamp update_at = null; // Chưa có thông tin về ngày cập nhật
+            String create_by = "Duong";
+            String update_by = null; // Chưa có thông tin về người cập nhật
 
             // Thay đổi dữ liệu này dựa trên cấu trúc bảng và cột
             preparedStatement.setString(1, "nguồn lấy dữ liệu"); // description
@@ -107,10 +109,10 @@ public class File_configsDAO {
             preparedStatement.setString(5, ","); // separator
             preparedStatement.setString(6, "24"); // columns
             preparedStatement.setString(7, "F"); // destination
-            preparedStatement.setTimestamp(8, createdAt);
-            preparedStatement.setTimestamp(9,  null);
-            preparedStatement.setString(10, createdBy); // created_by
-            preparedStatement.setString(11, updatedBy); // updated_by
+            preparedStatement.setTimestamp(8, created_at);
+            preparedStatement.setTimestamp(9,  update_at);
+            preparedStatement.setString(10, create_by);
+            preparedStatement.setString(11, update_by);
 
             // Thực hiện chèn dữ liệu
             int affectedRows = preparedStatement.executeUpdate();
@@ -133,7 +135,7 @@ public class File_configsDAO {
         return (int) id_config;
     }
 
-    //test
+    //test add_config
     public static void main(String[] args) {
         try {
             // Tạo đối tượng ETLService để lấy kết nối
@@ -142,22 +144,27 @@ public class File_configsDAO {
             // Tạo đối tượng DAO, truyền kết nối từ ETLService
             File_configsDAO fileConfigsDAO = new File_configsDAO();
 
-            // Dữ liệu đầu vào cần kiểm tra
-            String status = "N"; // Giá trị của trạng thái
-            String destination = "F"; // Giá trị của đích đến
+            // Dữ liệu thử nghiệm cần thêm vào bảng file_configs
+            ConfigLoader configLoader = new ConfigLoader();
+            Properties prop = configLoader.loadConfig();
+            String sourceUrl = prop.getProperty("url_source");
+            String folder = prop.getProperty("folder_location");
 
-            // Gọi phương thức checkProcess và in kết quả
-            boolean result = fileConfigsDAO.checkProcess(status, destination);
+            // Gọi phương thức addFile_configs để thêm dữ liệu vào bảng
+            int idConfig = fileConfigsDAO.addFile_configs(sourceUrl, folder);
 
-            if (result) {
-                System.out.println("Found matching record with status: " + status + " and destination: " + destination);
-                etlService.logFile("Found matching record with status: " + status + " and destination: " + destination);
+            // Kiểm tra kết quả trả về từ phương thức addFile_configs
+            if (idConfig != -1) {
+                System.out.println("Dữ liệu đã được thêm thành công vào bảng file_configs với ID: " + idConfig);
+                etlService.logFile("Dữ liệu đã được thêm thành công vào bảng file_configs với ID: " + idConfig);
             } else {
-                System.out.println("No matching record found for status: " + status + " and destination: " + destination);
-                etlService.logFile("No matching record found for status: " + status + " and destination: " + destination);
+                System.out.println("Thêm dữ liệu không thành công.");
+                etlService.logFile("Thêm dữ liệu không thành công.");
             }
+
         } catch (Exception e) {
             e.printStackTrace(); // Ghi log lỗi nếu có
         }
     }
+
 }

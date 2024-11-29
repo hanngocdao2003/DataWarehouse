@@ -28,7 +28,7 @@ public class Extract {
             // 1.3. Ktra tien trinh dang chay
             Extract extract = new Extract();
 
-            if(File_configsDAO.getInstance().checkProcess("P","F")) {
+            if(File_configsDAO.getInstance().checkProcess("N","F")) {
                 System.out.println("Process is running");
                 etlService.logFile("Process is running");
 
@@ -51,9 +51,12 @@ public class Extract {
                                // 1.7 Lấy id của file_config
                                 int id_fileConfigs = (int) fileConfigs.getId();
 
+                                System.out.println("ID file config: " + id_fileConfigs);
+
                                 // 1.8 Run script crawl data
                                 try {
                                     String csvFileName = runScript(fileConfigs.getSource_path());
+                                    System.out.println(csvFileName);
                                 } catch (IOException e) {
                                     throw new RuntimeException("Lỗi khi chạy script cho URL: " + fileConfigs.getSource_path(), e);
                                 }
@@ -106,6 +109,4 @@ public class Extract {
 
         return csvFile; // Trả về tên file nếu thành công, null nếu thất bại
     }
-
-
 }

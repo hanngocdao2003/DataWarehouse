@@ -8,7 +8,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import sys
 sys.stdout.reconfigure(encoding='utf-8')
 
-output_folder = "D:\\crawl"
+output_folder = r"D:\DataWarehouse\Dw_Cinestar\src\main\fileCrawlCsv"
 
 url_showtime = "https://cinestar.com.vn/api/showTime/"
 url_area = "https://cinestar.com.vn/api/cinema/"

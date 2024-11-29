@@ -40,26 +40,18 @@ public class ConfigLoader {
 
         InputStream input = null;
         try {
-            Properties properties = new Properties();
-            input = new FileInputStream(CONFIG_PATH);
-            properties.load(input);
+            ConfigLoader configLoader = new ConfigLoader();
+            Properties prop = configLoader.loadConfig();
 
             // Lấy giá trị của khóa url_source
-            String urlSourceValue = properties.getProperty("url_source");
-            String urlForderLocation = properties.getProperty("folder_location");
-
-            // Phân tách các giá trị theo dấu phẩy
-            List<String> urlList = Arrays.asList(urlSourceValue.split(","));
-
-            // In ra các giá trị
-            for (String url : urlList) {
-                System.out.println("URL: " + url);
+            String urlSourceValue = prop.getProperty("url_source");
+            String urlForderLocation = prop.getProperty("folder_location");
 
                 // 1.5. thêm source vào bảng file_configs
-                int id_config = File_configsDAO.getInstance().addFile_configs(url, urlForderLocation);
+                int id_config = File_configsDAO.getInstance().addFile_configs(urlSourceValue, urlForderLocation);
                 System.out.println("Inserted data_file_configs row with ID: " + id_config);
                 ids_config.add(id_config);
-            }
+
             System.out.println("urlForderLocation: " + urlForderLocation);
         } catch (IOException e) {
             //1.5 log khi khong thanh cong

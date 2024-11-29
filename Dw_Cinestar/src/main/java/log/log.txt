@@ -62,3 +62,46 @@ Erro addFile_configsUnknown column 'description' in 'field list'
 HH:mm:ss dd/MM/yyyy - 17:44:30 29/11/2024
 Found matching record with status: N and destination: F	
 HH:mm:ss dd/MM/yyyy - 17:45:58 29/11/2024
+Process is running	
+HH:mm:ss dd/MM/yyyy - 19:12:29 29/11/2024
+Add config source Failed	
+HH:mm:ss dd/MM/yyyy - 19:12:29 29/11/2024
+Process is running	
+HH:mm:ss dd/MM/yyyy - 19:14:08 29/11/2024
+Add config source Failed	
+HH:mm:ss dd/MM/yyyy - 19:14:08 29/11/2024
+Process is running	
+HH:mm:ss dd/MM/yyyy - 19:15:40 29/11/2024
+Add config source Failed	
+HH:mm:ss dd/MM/yyyy - 19:15:40 29/11/2024
+Process is running	
+HH:mm:ss dd/MM/yyyy - 19:18:34 29/11/2024
+Add config source Failed	
+HH:mm:ss dd/MM/yyyy - 19:18:34 29/11/2024
+Process is running	
+HH:mm:ss dd/MM/yyyy - 19:21:44 29/11/2024
+Add config source Failed	
+HH:mm:ss dd/MM/yyyy - 19:21:44 29/11/2024
+Erro addFile_configsUnknown column 'description' in 'field list'	
+HH:mm:ss dd/MM/yyyy - 19:35:47 29/11/2024
+Thêm dữ liệu không thành công.	
+HH:mm:ss dd/MM/yyyy - 19:35:47 29/11/2024
+Dữ liệu đã được thêm thành công vào bảng file_configs với ID: 2	
+HH:mm:ss dd/MM/yyyy - 19:37:44 29/11/2024
+Add config source Failed	
+HH:mm:ss dd/MM/yyyy - 19:38:30 29/11/2024
+Dữ liệu đã được thêm thành công vào bảng file_configs với ID: 3	
+HH:mm:ss dd/MM/yyyy - 19:45:58 29/11/2024
+Process is running	
+HH:mm:ss dd/MM/yyyy - 19:47:37 29/11/2024
+Chạy script thành công, file CSV được tạo: movie_name  ...  Date_crawl
+0  HÀNH TRÌNH CỦA MOANA 2 (2D) PĐ  ...  2024-11-29
+1  HÀNH TRÌNH CỦA MOANA 2 (2D) PĐ  ...  2024-11-29
+2  HÀNH TRÌNH CỦA MOANA 2 (2D) PĐ  ...  2024-11-29
+3  HÀNH TRÌNH CỦA MOANA 2 (2D) PĐ  ...  2024-11-29
+4  HÀNH TRÌNH CỦA MOANA 2 (2D) PĐ  ...  2024-11-29
+
+[5 rows x 16 columns]	
+HH:mm:ss dd/MM/yyyy - 19:52:53 29/11/2024
+Dữ liệu đã được thêm thành công vào bảng file_configs với ID: 6	
+HH:mm:ss dd/MM/yyyy - 20:07:12 29/11/2024

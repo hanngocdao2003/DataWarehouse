@@ -349,3 +349,12 @@ HH:mm:ss dd/MM/yyyy - 09:59:56 03/12/2024
 Chạy script data thành công	
 HH:mm:ss dd/MM/yyyy - 10:08:39 03/12/2024
 -----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 18:23:05 05/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 18:28:56 05/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 19:11:59 05/12/2024
+-----

@@ -6,10 +6,10 @@ import java.io.InputStreamReader;
 
 public class RunPythonScript {
 
-    public static String runScript(String scriptPath) {
+    public String runScript(String scriptPath) {
         try {
             // Kiểm tra nếu Python có trong PATH hệ thống
-            String pythonExecutable = "python";
+            String pythonExecutable = "C:\\Users\\Windows 10\\IdeaProjects\\PythonSample\\venv\\Scripts\\python.exe";
 
             // Tạo ProcessBuilder với python và script path
             ProcessBuilder processBuilder = new ProcessBuilder(pythonExecutable, scriptPath);
@@ -45,19 +45,19 @@ public class RunPythonScript {
         }
     }
 
-    public static void main(String[] args) {
-        // Đường dẫn tới script Python
-        String pythonScriptPath = "src/main/java/crawl/crawl1.py";
-
-        // Thực thi script và nhận kết quả (tên file CSV)
-        String csvFile = runScript(pythonScriptPath);
-
-        // In thông báo dựa trên kết quả chạy script
-        if (csvFile != null) {
-            System.out.println("Script executed successfully.");
-            System.out.println("CSV file generated: " + csvFile);  // In tên file CSV
-        } else {
-            System.out.println("Script failed.");
-        }
-    }
+//    public static void main(String[] args) {
+//        // Đường dẫn tới script Python
+//        String pythonScriptPath = "src/main/java/crawl/crawl1.py";
+//
+//        // Thực thi script và nhận kết quả (tên file CSV)
+//        String csvFile = runScript(pythonScriptPath);
+//
+//        // In thông báo dựa trên kết quả chạy script
+//        if (csvFile != null) {
+//            System.out.println("Script executed successfully.");
+//            System.out.println("CSV file generated: " + csvFile);  // In tên file CSV
+//        } else {
+//            System.out.println("Script failed.");
+//        }
+//    }
 }

@@ -127,3 +127,225 @@ Chạy script thành công, file CSV được tạo: movie_name  ...  Date_crawl
 
 [5 rows x 16 columns]	
 HH:mm:ss dd/MM/yyyy - 20:51:36 29/11/2024
+Error reading file: D:\DW\DataWarehouse\Dw_Cinestar\src\main\resources\config.properties
+Cannot load connection class because of underlying exception: com.mysql.cj.exceptions.WrongArgumentException: Malformed database URL, failed to parse the main URL sections.	
+HH:mm:ss dd/MM/yyyy - 15:20:40 02/12/2024
+-----
+Không tìm thấy dữ liệu cho idFileConfig:	
+HH:mm:ss dd/MM/yyyy - 15:26:37 02/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 15:26:49 02/12/2024
+-----
+Không tìm thấy dữ liệu cho idFileConfig:	
+HH:mm:ss dd/MM/yyyy - 15:28:40 02/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 15:28:47 02/12/2024
+-----
+Không tìm thấy dữ liệu cho idFileConfig:	
+HH:mm:ss dd/MM/yyyy - 15:29:53 02/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 15:30:00 02/12/2024
+-----
+Không tìm thấy dữ liệu cho idFileConfig:	
+HH:mm:ss dd/MM/yyyy - 15:30:55 02/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 15:31:02 02/12/2024
+-----
+Không tìm thấy dữ liệu cho idFileConfig:	
+HH:mm:ss dd/MM/yyyy - 15:31:58 02/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 15:32:06 02/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 15:32:52 02/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 15:35:41 02/12/2024
+-----
+Chạy script data không thành công	
+HH:mm:ss dd/MM/yyyy - 15:36:16 02/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 15:37:02 02/12/2024
+-----
+Chạy script data không thành công	
+HH:mm:ss dd/MM/yyyy - 15:38:22 02/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 15:38:43 02/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 15:41:23 02/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 15:47:58 02/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 15:48:36 02/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 15:49:19 02/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 15:50:08 02/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 15:52:06 02/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 16:43:10 02/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 16:47:01 02/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 16:50:02 02/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 16:57:57 02/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 16:59:00 02/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 17:02:17 02/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 17:05:54 02/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 17:07:25 02/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 17:07:59 02/12/2024
+-----
+Unknown file D:\DW\DataWarehouse\Dw_Cinestar\src\main\resources\config.properties
+Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn_Staging" is null	
+HH:mm:ss dd/MM/yyyy - 17:08:05 02/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 17:12:34 02/12/2024
+-----
+Unknown file D:\DW\DataWarehouse\Dw_Cinestar\src\main\resources\config.properties
+Cannot invoke "java.sql.Connection.prepareStatement(String)" because "conn_Staging" is null	
+HH:mm:ss dd/MM/yyyy - 17:12:49 02/12/2024
+-----
+Checking Process	
+HH:mm:ss dd/MM/yyyy - 17:13:44 02/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 17:14:34 02/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 17:20:22 02/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 17:22:35 02/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 17:22:59 02/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 08:06:11 03/12/2024
+-----
+Checking Process	
+HH:mm:ss dd/MM/yyyy - 09:04:27 03/12/2024
+-----
+Chạy script data không thành công	
+HH:mm:ss dd/MM/yyyy - 09:07:12 03/12/2024
+-----
+Crawl operation failed.	
+HH:mm:ss dd/MM/yyyy - 09:07:12 03/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 09:07:51 03/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 09:09:37 03/12/2024
+-----
+Co tien trinh dang chay	
+HH:mm:ss dd/MM/yyyy - 09:11:34 03/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 09:12:38 03/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 09:19:31 03/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 09:20:32 03/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 09:24:55 03/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 09:25:44 03/12/2024
+-----
+Lấy thông tin thất bại	
+HH:mm:ss dd/MM/yyyy - 09:26:13 03/12/2024
+-----
+Lấy thông tin thất bại	
+HH:mm:ss dd/MM/yyyy - 09:28:24 03/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 09:34:43 03/12/2024
+-----
+Lấy thông tin thất bại	
+HH:mm:ss dd/MM/yyyy - 09:39:33 03/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 09:40:21 03/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 09:41:21 03/12/2024
+-----
+Co tien trinh dang chay	
+HH:mm:ss dd/MM/yyyy - 09:44:08 03/12/2024
+-----
+Co tien trinh dang chay	
+HH:mm:ss dd/MM/yyyy - 09:44:49 03/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 09:45:23 03/12/2024
+-----
+Transform thất bại	
+HH:mm:ss dd/MM/yyyy - 09:45:43 03/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 09:47:20 03/12/2024
+-----
+Transform thất bại	
+HH:mm:ss dd/MM/yyyy - 09:47:36 03/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 09:50:19 03/12/2024
+-----
+Transform thất bại	
+HH:mm:ss dd/MM/yyyy - 09:51:56 03/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 09:53:36 03/12/2024
+-----
+Transform thất bại	
+HH:mm:ss dd/MM/yyyy - 09:53:48 03/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 09:56:40 03/12/2024
+-----
+Transform thất bại	
+HH:mm:ss dd/MM/yyyy - 09:56:53 03/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 09:58:51 03/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 09:59:56 03/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 10:08:39 03/12/2024
+-----

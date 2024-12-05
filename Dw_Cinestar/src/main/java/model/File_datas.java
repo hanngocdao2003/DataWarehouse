@@ -3,60 +3,55 @@ package model;
 import java.sql.Timestamp;
 
 public class File_datas {
-    private int id;
-    private int id_config;
-    private String filename;
-    private int row_count;
+    private long id;
+    private int dfConfigId;
+    private String name;
+    private int rowCount;
     private String status;
     private String note;
-    private Timestamp created_at;
-    private Timestamp update_at;
-    private String create_by;
-    private String update_by;
 
-    public File_datas(int id, int id_config, String filename, int row_count, String status, String note, Timestamp created_at, Timestamp update_at, String create_by, String update_by) {
-        this.id = id;
-        this.id_config = id_config;
-        this.filename = filename;
-        this.row_count = row_count;
-        this.status = status;
-        this.note = note;
-        this.created_at = created_at;
-        this.update_at = update_at;
-        this.create_by = create_by;
-        this.update_by = update_by;
+    public File_datas() {
     }
 
-    public int getId() {
+    public File_datas(long id, int dfConfigId, String name, int rowCount, String status, String note) {
+        this.id = id;
+        this.dfConfigId = dfConfigId;
+        this.name = name;
+        this.rowCount = rowCount;
+        this.status = status;
+        this.note = note;
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public int getId_config() {
-        return id_config;
+    public int getDfConfigId() {
+        return dfConfigId;
     }
 
-    public void setId_config(int id_config) {
-        this.id_config = id_config;
+    public void setDfConfigId(int dfConfigId) {
+        this.dfConfigId = dfConfigId;
     }
 
-    public String getFilename() {
-        return filename;
+    public String getName() {
+        return name;
     }
 
-    public void setFilename(String filename) {
-        this.filename = filename;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getRow_count() {
-        return row_count;
+    public int getRowCount() {
+        return rowCount;
     }
 
-    public void setRow_count(int row_count) {
-        this.row_count = row_count;
+    public void setRowCount(int rowCount) {
+        this.rowCount = rowCount;
     }
 
     public String getStatus() {
@@ -75,35 +70,15 @@ public class File_datas {
         this.note = note;
     }
 
-    public Timestamp getCreated_at() {
-        return created_at;
-    }
-
-    public void setCreated_at(Timestamp created_at) {
-        this.created_at = created_at;
-    }
-
-    public Timestamp getUpdate_at() {
-        return update_at;
-    }
-
-    public void setUpdate_at(Timestamp update_at) {
-        this.update_at = update_at;
-    }
-
-    public String getCreate_by() {
-        return create_by;
-    }
-
-    public void setCreate_by(String create_by) {
-        this.create_by = create_by;
-    }
-
-    public String getUpdate_by() {
-        return update_by;
-    }
-
-    public void setUpdate_by(String update_by) {
-        this.update_by = update_by;
+    @Override
+    public String toString() {
+        return "DataFile{" +
+                "id=" + id +
+                ", dfConfigId='" + dfConfigId + '\'' +
+                ", name='" + name + '\'' +
+                ", rowCount=" + rowCount +
+                ", status='" + status + '\'' +
+                ", note='" + note + '\'' +
+                '}';
     }
 }

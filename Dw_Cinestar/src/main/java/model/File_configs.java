@@ -3,71 +3,49 @@ package model;
 import java.sql.Timestamp;
 
 public class File_configs {
-     private int id;
-   private String descript;
-    private String source_path;
-    private String source_location;
+    private long id;
+    private String sourcePath;
+    private String location;
     private String format;
-    private String seperator;
-    private String colums;
+    private String columns;
     private String destination;
-    private Timestamp created_at;
-    private Timestamp update_at;
-    private String create_by;
-    private String update_by;
 
+    // Constructors
     public File_configs() {
     }
 
-    public File_configs(int id, String descript, String source_path, String source_location, String format, String seperator, String colums, String destination, Timestamp created_at, Timestamp update_at, String create_by, String update_by) {
+    public File_configs(long id, String sourcePath, String location, String format, String columns, String destination) {
         this.id = id;
-        this.descript = descript;
-        this.source_path = source_path;
-        this.source_location = source_location;
+        this.sourcePath = sourcePath;
+        this.location = location;
         this.format = format;
-        this.seperator = seperator;
-        this.colums = colums;
+        this.columns = columns;
         this.destination = destination;
-        this.created_at = created_at;
-        this.update_at = update_at;
-        this.create_by = create_by;
-        this.update_by = update_by;
     }
 
-    public File_configs(int id) {
-        this.id = id;
-    }
-
-    public int getId() {
+    // Getters and Setters
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public String getDescript() {
-        return descript;
+    public String getSourcePath() {
+        return sourcePath;
     }
 
-    public void setDescript(String descript) {
-        this.descript = descript;
+    public void setSourcePath(String sourcePath) {
+        this.sourcePath = sourcePath;
     }
 
-    public String getSource_path() {
-        return source_path;
+    public String getLocation() {
+        return location;
     }
 
-    public void setSource_path(String source_path) {
-        this.source_path = source_path;
-    }
-
-    public String getSource_location() {
-        return source_location;
-    }
-
-    public void setSource_location(String source_location) {
-        this.source_location = source_location;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public String getFormat() {
@@ -78,20 +56,12 @@ public class File_configs {
         this.format = format;
     }
 
-    public String getSeperator() {
-        return seperator;
+    public String getColumns() {
+        return columns;
     }
 
-    public void setSeperator(String seperator) {
-        this.seperator = seperator;
-    }
-
-    public String getColums() {
-        return colums;
-    }
-
-    public void setColums(String colums) {
-        this.colums = colums;
+    public void setColumns(String columns) {
+        this.columns = columns;
     }
 
     public String getDestination() {
@@ -102,35 +72,16 @@ public class File_configs {
         this.destination = destination;
     }
 
-    public Timestamp getCreated_at() {
-        return created_at;
-    }
-
-    public void setCreated_at(Timestamp created_at) {
-        this.created_at = created_at;
-    }
-
-    public Timestamp getUpdate_at() {
-        return update_at;
-    }
-
-    public void setUpdate_at(Timestamp update_at) {
-        this.update_at = update_at;
-    }
-
-    public String getCreate_by() {
-        return create_by;
-    }
-
-    public void setCreate_by(String create_by) {
-        this.create_by = create_by;
-    }
-
-    public String getUpdate_by() {
-        return update_by;
-    }
-
-    public void setUpdate_by(String update_by) {
-        this.update_by = update_by;
+    // toString method (optional, for debugging or logging)
+    @Override
+    public String toString() {
+        return "model.DataFileConfig{" +
+                "id=" + id +
+                ", sourcePath='" + sourcePath + '\'' +
+                ", location='" + location + '\'' +
+                ", format='" + format + '\'' +
+                ", columns='" + columns + '\'' +
+                ", destination='" + destination + '\'' +
+                '}';
     }
 }

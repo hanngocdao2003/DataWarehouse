@@ -278,7 +278,6 @@ public class CrawlToFile {
 
                 String csvFileName = "movies_data_" + currentDateTime + ".csv";
                 // 1.12.1 cập nhật status trong file_datas sang C
-                System.out.println("doan trong phuc"+csvFileName);
                 // 1.12.2 Cập nhật lại tên file
                 CTF.updateStatus(conn, (int) dfFileConfig.getId(), "C", "Data import success");
                 CTF.updateFileName(conn, (int) dfFileConfig.getId(), csvFileName);

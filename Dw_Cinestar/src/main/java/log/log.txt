@@ -364,3 +364,66 @@ HH:mm:ss dd/MM/yyyy - 10:10:36 08/12/2024
 Chạy script data thành công	
 HH:mm:ss dd/MM/yyyy - 10:19:44 08/12/2024
 -----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 10:33:56 09/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 10:34:42 09/12/2024
+-----
+Transform thất bại	
+HH:mm:ss dd/MM/yyyy - 10:35:12 09/12/2024
+-----
+Co tien trinh dang chay	
+HH:mm:ss dd/MM/yyyy - 10:36:00 09/12/2024
+-----
+Lấy thông tin thất bại	
+HH:mm:ss dd/MM/yyyy - 10:36:47 09/12/2024
+-----
+Lấy thông tin thất bại	
+HH:mm:ss dd/MM/yyyy - 10:37:44 09/12/2024
+-----
+Lấy thông tin thất bại	
+HH:mm:ss dd/MM/yyyy - 10:39:04 09/12/2024
+-----
+Lấy thông tin thất bại	
+HH:mm:ss dd/MM/yyyy - 10:39:32 09/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 10:40:10 09/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 10:40:48 09/12/2024
+-----
+Transform thất bại	
+HH:mm:ss dd/MM/yyyy - 10:45:06 09/12/2024
+-----
+Transform thất bại	
+HH:mm:ss dd/MM/yyyy - 10:50:58 09/12/2024
+-----
+Lấy thông tin thất bại	
+HH:mm:ss dd/MM/yyyy - 10:53:26 09/12/2024
+-----
+Transform thất bại	
+HH:mm:ss dd/MM/yyyy - 10:55:31 09/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 11:03:10 09/12/2024
+-----
+Cập nhật status và destination bị gián đoạn	
+HH:mm:ss dd/MM/yyyy - 11:23:22 09/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 11:45:58 09/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 11:46:11 09/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 12:14:32 09/12/2024
+-----
+Chạy script data thành công	
+HH:mm:ss dd/MM/yyyy - 12:20:34 09/12/2024
+-----
+Cập nhật status và destination bị gián đoạn	
+HH:mm:ss dd/MM/yyyy - 12:20:57 09/12/2024
+-----

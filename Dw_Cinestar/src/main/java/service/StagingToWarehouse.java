@@ -138,9 +138,9 @@ public class StagingToWarehouse {
         warehouse = new GetConnection().getConnection("db_wh");
 
         // Transform dữ liệu vào bảng bank_dim
-        String transformBankDimQuery = "INSERT INTO date_dim (id_date, date, day, month, year, hour, minute)\n" +
+        String transformBankDimQuery = "INSERT INTO date_dim (id, date, day, month, year, hour, minute)\n" +
                 "SELECT \n" +
-                "    ROW_NUMBER() OVER (ORDER BY m.Date) AS id_date,\n" +
+                "    ROW_NUMBER() OVER (ORDER BY m.Date) AS id,\n" +
                 "    m.Date AS date,\n" +
                 "    DAYNAME(m.Date) AS day,\n" +
                 "    MONTHNAME(m.Date) AS month,\n" +
@@ -230,11 +230,13 @@ public class StagingToWarehouse {
         warehouse = new GetConnection().getConnection("db_wh");
 
         // Transform dữ liệu vào bảng bank_dim
-        String transformMovieDimQuery = "INSERT INTO film_fact (id_theater, id_schedule, id_movie, expiration_date)\n" +
+        String transformMovieDimQuery = "INSERT INTO film_fact (id_theater, id_schedule, id_movie, id_date, expiration_date)\n" +
                 "SELECT td.id, \n" +
-                "       sd.id, \n" +
-                "       md.id, \n" +
-                "       '2030-01-01' AS expiration_date FROM db_staging.movie m\n" +
+                "    sd.id, \n" +
+                "    md.id, \n" +
+                "    dd.id,\n" +
+                "    '2030-01-01' AS expiration_date FROM db_staging.movie m\n" +
+                "JOIN db_dw.date_dim dd ON dd.date = m.Date\n" +
                 "JOIN db_dw.movie_dim md ON md.movie_name = m.movie_name\n" +
                 "JOIN db_dw.theater_dim td ON td.theater_name = m.theater_name\n" +
                 "JOIN db_dw.schedule_dim sd ON sd.show_time = m.show_time";
@@ -275,114 +277,46 @@ public class StagingToWarehouse {
             return rowsAffected > 0;
         } catch (SQLException e) {
             System.out.println("Thất bại");
+            e.printStackTrace();
             new GetConnection().logFile("Transform thất bại");
             System.exit(0);
             return false;
         }
     }
 
-    public boolean transformDataAggre() throws IOException{
-        Connection stagging = null;
-        Connection warehouse = null;
-
-        try {
-            stagging = new GetConnection().getConnection("db_staging");
-            warehouse = new GetConnection().getConnection("db_wh");
-
-            // Transform dữ liệu vào bảng bank_dim
-            String transformBankDimQuery = "INSERT INTO movie_aggregate \n" +
-                    "(date, movie_name, director, nation, genre, time_m, release_date, end_date, description, show_time, theater_name, location_name, created_at, update_at, create_by, update_by)\n" +
-                    "SELECT \n" +
-                    "    dd.Date,\n" +
-                    "    md.movie_name, \n" +
-                    "    md.director, \n" +
-                    "    md.nation, \n" +
-                    "    md.genre, \n" +
-                    "    md.time_m, \n" +
-                    "    sd.release_date, \n" +
-                    "    sd.end_date, \n" +
-                    "    md.description, \n" +
-                    "    sd.show_time, \n" +
-                    "    td.theater_name, \n" +
-                    "    td.location_name,  \n" +
-                    "    NOW() as created_at,  \n" +
-                    "    NOW() as update_at, \n" +
-                    "    'Phuc' as create_by, \n" +
-                    "    'Phuc' as update_by\n" +
-                    "FROM db_staging.movie m\n" +
-                    "JOIN db_dw.date_dim dd ON m.Date = dd.date\n" +
-                    "JOIN db_dw.movie_dim md ON md.movie_name = m.movie_name\n" +
-                    "JOIN db_dw.theater_dim td ON td.theater_name = m.theater_name\n" +
-                    "JOIN db_dw.schedule_dim sd ON sd.show_time = m.show_time;";
-
-            // Kiểm tra xem việc transform có thành công không
-            try (PreparedStatement preparedStatement = warehouse.prepareStatement(transformBankDimQuery)) {
-                int rowsAffected = preparedStatement.executeUpdate();
-                System.out.println("Thành công");
-                return rowsAffected > 0;
-            }
-        } catch (IOException e) {
-            System.out.println("Lỗi IOException: " + e.getMessage());
-            new GetConnection().logFile("Transform thất bại do lỗi IO");
-        } catch (SQLException e) {
-            System.out.println("Thất bại");
-            new GetConnection().logFile("Transform thất bại do lỗi SQL");
-        } finally {
-            // Đóng kết nối để tránh rò rỉ tài nguyên
-            try {
-                if (stagging != null) stagging.close();
-                if (warehouse != null) warehouse.close();
-            } catch (SQLException e) {
-                System.out.println("Lỗi khi đóng kết nối: " + e.getMessage());
-            }
-        }
-        return false;
-    }
-
-
-    public boolean transdormDataAggreAvg() throws IOException {
-        Connection stagging = new GetConnection().getConnection("db_staging");
-        warehouse = new GetConnection().getConnection("db_wh");
-
-        // Transform dữ liệu vào bảng bank_dim
-        String transformBankDimQuery =  "INSERT INTO avg_movie_aggregate \n" +
-                "(month_avg, year_avg, movie_name, director, nation, genre, time_m, release_date, end_date, description, show_time, number_of_showtimes, theater_name, location_name, created_at, update_at, create_by, update_by)\n" +
+    public boolean transformTempMovieAggregate() throws IOException{
+        Connection conn = new GetConnection().getConnection("db_wh");
+        String sql = "CREATE TABLE db_dw.temp_movie_result AS\n" +
                 "SELECT \n" +
-                "    MONTHNAME(m.Date) AS month_avg,  -- assuming you want to extract month\n" +
-                "    YEAR(m.Date) AS year_avg,    -- assuming you want to extract year\n" +
+                "    dd.`Date` AS date_column, -- Tránh dùng từ khóa trực tiếp\n" +
                 "    md.movie_name, \n" +
                 "    md.director, \n" +
-                "    md.nation, \n" +
+                "    md.nation, \n"  +
                 "    md.genre, \n" +
                 "    md.time_m, \n" +
                 "    sd.release_date, \n" +
                 "    sd.end_date, \n" +
                 "    md.description, \n" +
                 "    sd.show_time, \n" +
-                "    count(*) AS number_of_showtimes,\n" +
                 "    td.theater_name, \n" +
                 "    td.location_name,  \n" +
                 "    NOW() AS created_at,  \n" +
                 "    NOW() AS update_at, \n" +
                 "    'Phuc' AS create_by, \n" +
                 "    'Phuc' AS update_by\n" +
-                "FROM db_staging.movie m\n" +
-                "JOIN db_dw.movie_dim md ON md.movie_name = m.movie_name\n" +
-                "JOIN db_dw.theater_dim td ON td.theater_name = m.theater_name\n" +
-                "JOIN db_dw.schedule_dim sd ON sd.show_time = m.show_time\n" +
-                "GROUP BY \n" +
-                "    MONTH(m.Date),\n" +
-                "    YEAR(m.Date),\n" +
-                "    md.movie_name";
-
-        // 7.6.1 kiểm tra có thành công không
-        try (PreparedStatement preparedStatement = warehouse.prepareStatement(transformBankDimQuery)) {
+                "FROM db_dw.film_fact ff \n" +
+                "JOIN db_dw.date_dim dd ON ff.id_date = dd.id\n" +
+                "JOIN db_dw.movie_dim md ON ff.id_movie = md.id\n" +
+                "JOIN db_dw.theater_dim td ON td.id = ff.id_theater\n" +
+                "JOIN db_dw.schedule_dim sd ON sd.id = ff.id_schedule;\n";
+        try (PreparedStatement preparedStatement = warehouse.prepareStatement(sql)) {
 //            preparedStatement.setInt(1, dfConfigId);
             int rowsAffected = preparedStatement.executeUpdate();
             System.out.println("thanh cong");
             return rowsAffected > 0;
         } catch (SQLException e) {
             System.out.println("Thất bại");
+            e.printStackTrace();
             new GetConnection().logFile("Transform thất bại");
             System.exit(0);
             return false;
@@ -418,8 +352,6 @@ public class StagingToWarehouse {
         STW.truncateTable(warehouse,"schedule_dim");
         STW.truncateTable(warehouse,"date_dim");
         STW.truncateTable(warehouse,"film_fact");
-        STW.truncateTable(warehouse,"movie_aggregate");
-        STW.truncateTable(warehouse,"avg_movie_aggregate");
 
         // 7. Tiến hành transform dữ liệu
         // 7.1 transform bảng bank_dim
@@ -428,8 +360,15 @@ public class StagingToWarehouse {
         STW.transformScheduleDim();
         STW.transformTheaterDim();
         STW.transformFilmFact();
-        STW.transformDataAggre();
-        STW.transdormDataAggreAvg();
+
+        boolean check = STW.transformTempMovieAggregate();
+        if(check){
+            System.out.println("Movie Aggregate Success");
+        }else{
+            String sql = "DROP TABLE temp_movie_result";
+            PreparedStatement ps = warehouse.prepareStatement(sql);
+            ps.executeUpdate();
+        }
 
         STW.updateStatus((int) dataFile.getId(),"C","Transform data succesfull");
         STW.truncateTable(staging,"movie");

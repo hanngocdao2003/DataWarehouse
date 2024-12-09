@@ -120,11 +120,11 @@ public class GetConnection {
         pw.close();
     }
 
-//    public static void main(String[] args) {
-//        GetConnection conn = new GetConnection();
-//        conn.getConnection("db_control");
-//        if(conn != null){
-//            System.out.println("Success");
-//        }
-//    }
+    public static void main(String[] args) throws IOException {
+        GetConnection conn = new GetConnection();
+        conn.getConnection("db_control");
+        if(conn != null){
+            System.out.println("Success");
+        }
+    }
 }

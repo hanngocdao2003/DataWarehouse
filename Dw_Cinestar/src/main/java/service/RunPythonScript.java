@@ -9,7 +9,7 @@ public class RunPythonScript {
     public String runScript(String scriptPath) {
         try {
             // Kiểm tra nếu Python có trong PATH hệ thống
-            String pythonExecutable = "C:\\Users\\Windows 10\\IdeaProjects\\PythonSample\\venv\\Scripts\\python.exe";
+            String pythonExecutable = "C:\\Users\\ADMIN\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe";
 
             // Tạo ProcessBuilder với python và script path
             ProcessBuilder processBuilder = new ProcessBuilder(pythonExecutable, scriptPath);

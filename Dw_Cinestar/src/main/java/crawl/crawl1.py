@@ -8,7 +8,7 @@ import warnings
 # Tắt tất cả các cảnh báo
 warnings.filterwarnings("ignore")
 
-output_folder = "D:/DW/DataWarehouse/Dw_Cinestar/src/main/fileCrawlCsv"
+output_folder = "A:/workspace_all_tools/IntelliJ_space/DW/Dw_Cinestar/src/main/fileCrawlCsv"
 
 url = "https://cinestar.com.vn/api/showTime/"  # Thay bằng URL của API
 url_area = "https://cinestar.com.vn/api/cinema/"

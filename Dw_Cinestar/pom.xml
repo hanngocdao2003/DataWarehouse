@@ -17,7 +17,7 @@
     <junit.version>5.9.2</junit.version>
   </properties>
 
-  <dependencies>
+    <dependencies>
 <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
@@ -36,8 +36,7 @@
       <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
-
-      <dependency>
+        <dependency>
           <groupId>mysql</groupId>
           <artifactId>mysql-connector-java</artifactId>
           <version>8.0.30</version>
@@ -50,7 +49,7 @@
 
   </dependencies>
 
-  <build>
+    <build>
     <plugins>
 <plugin>
         <groupId>org.apache.maven.plugins</groupId>

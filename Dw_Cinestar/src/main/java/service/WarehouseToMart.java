@@ -2,6 +2,7 @@ package service;
 
 import dao.GetConnection;
 import dao.GetConnection2;
+import log.MailTo;
 import model.File_datas;
 
 import java.io.FileWriter;
@@ -72,7 +73,9 @@ public class WarehouseToMart {
                     }
                 }
             }
-            new GetConnection().logFile("Cập nhật status và destination bị gián đoạn");
+            GetConnection con = new GetConnection();
+            con.logFile("Cập nhật status và destination bị gián đoạn");
+            MailTo.sendVerificationEmail(con.logFileToMail("Cập nhật status và destination bị gián đoạn"));
             System.exit(0);
         }
     }

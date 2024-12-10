@@ -1,6 +1,7 @@
 package service;
 
 import dao.GetConnection;
+import log.MailTo;
 import model.File_datas;
 
 import java.io.IOException;
@@ -14,8 +15,8 @@ public class StagingToWarehouse {
     private boolean checkProcess(String status,String destination) throws IOException {
         conn = new GetConnection().getConnection("db_control");
         String query =  "SELECT `status`,destination FROM `data_file` \n" +
-                        "JOIN data_file_configs ON data_file_configs.id = data_file.id_config \n" +
-                        "WHERE `status`=? AND destination=?";
+                "JOIN data_file_configs ON data_file_configs.id = data_file.id_config \n" +
+                "WHERE `status`=? AND destination=?";
         try {
             // Thực hiện truy vấn để lấy thông tin từ data_file_configs
             PreparedStatement preparedStatement = conn.prepareStatement(query);
@@ -56,8 +57,8 @@ public class StagingToWarehouse {
 //        DataFileConfig dataFileConfig = null;
 
         String query =  "SELECT data_file.*,data_file_configs.* FROM `data_file` \n" +
-                        "JOIN data_file_configs ON data_file_configs.id = data_file.id_config\n" +
-                        "WHERE `status`=? AND destination=?";
+                "JOIN data_file_configs ON data_file_configs.id = data_file.id_config\n" +
+                "WHERE `status`=? AND destination=?";
 
         // Thực hiện truy vấn để lấy thông tin từ data_file_configs
         PreparedStatement preparedStatement = conn.prepareStatement(query);
@@ -79,7 +80,9 @@ public class StagingToWarehouse {
         }
         else {
             // 4.1 Thông báo lỗi
-            new GetConnection().logFile("Lấy thông tin thất bại");
+            GetConnection con = new GetConnection();
+            con.logFile("Lấy thông tin thất bại");
+            MailTo.sendVerificationEmail(con.logFileToMail("Lấy thông tin thất bại"));
             System.exit(0);
         }
         return  dataFile;
@@ -126,7 +129,9 @@ public class StagingToWarehouse {
             return rowsAffected > 0;
         } catch (SQLException e) {
             System.out.println("Thất bại");
-            new GetConnection().logFile("Transform thất bại");
+            GetConnection con = new GetConnection();
+            con.logFile("Transform thất bại");
+            MailTo.sendVerificationEmail(con.logFileToMail("Transform thất bại"));
             System.exit(0);
             return false;
         }
@@ -158,7 +163,9 @@ public class StagingToWarehouse {
             return rowsAffected > 0;
         } catch (SQLException e) {
             System.out.println("Thất bại");
-            new GetConnection().logFile("Transform thất bại");
+            GetConnection con = new GetConnection();
+            con.logFile("Transform thất bại");
+            MailTo.sendVerificationEmail(con.logFileToMail("Transform thất bại"));
             System.exit(0);
             return false;
         }
@@ -189,7 +196,9 @@ public class StagingToWarehouse {
             return rowsAffected > 0;
         } catch (SQLException e) {
             System.out.println("Thất bại");
-            new GetConnection().logFile("Transform thất bại");
+            GetConnection con = new GetConnection();
+            con.logFile("Transform thất bại");
+            MailTo.sendVerificationEmail(con.logFileToMail("Transform thất bại"));
             System.exit(0);
             return false;
         }
@@ -219,7 +228,9 @@ public class StagingToWarehouse {
             return rowsAffected > 0;
         } catch (SQLException e) {
             System.out.println("Thất bại");
-            new GetConnection().logFile("Transform thất bại");
+            GetConnection con = new GetConnection();
+            con.logFile("Transform thất bại");
+            MailTo.sendVerificationEmail(con.logFileToMail("Transform thất bại"));
             System.exit(0);
             return false;
         }
@@ -250,7 +261,9 @@ public class StagingToWarehouse {
             return rowsAffected > 0;
         } catch (SQLException e) {
             System.out.println("Thất bại");
-            new GetConnection().logFile("Transform thất bại");
+            GetConnection con = new GetConnection();
+            con.logFile("Transform thất bại");
+            MailTo.sendVerificationEmail(con.logFileToMail("Transform thất bại"));
             System.exit(0);
             return false;
         }
@@ -278,7 +291,9 @@ public class StagingToWarehouse {
         } catch (SQLException e) {
             System.out.println("Thất bại");
             e.printStackTrace();
-            new GetConnection().logFile("Transform thất bại");
+            GetConnection con = new GetConnection();
+            con.logFile("Transform thất bại");
+            MailTo.sendVerificationEmail(con.logFileToMail("Transform thất bại"));
             System.exit(0);
             return false;
         }
@@ -317,7 +332,9 @@ public class StagingToWarehouse {
         } catch (SQLException e) {
             System.out.println("Thất bại");
             e.printStackTrace();
-            new GetConnection().logFile("Transform thất bại");
+            GetConnection con = new GetConnection();
+            con.logFile("Transform thất bại");
+            MailTo.sendVerificationEmail(con.logFileToMail("Transform thất bại"));
             System.exit(0);
             return false;
         }
@@ -332,7 +349,9 @@ public class StagingToWarehouse {
         if(STW.checkProcess("P","W")){
             System.out.println("Co tien trinh dang chay");
             // 3.1 Thông báo lỗi
-            new GetConnection().logFile("Co tien trinh dang chay");
+            GetConnection con = new GetConnection();
+            con.logFile("Co tien trinh dang chay");
+            MailTo.sendVerificationEmail(con.logFileToMail("Co tien trinh dang chay"));
             System.exit(0);
         }
         else {

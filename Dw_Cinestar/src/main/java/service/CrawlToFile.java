@@ -2,6 +2,7 @@ package service;
 
 //import dao.DatabaseConnection;
 import dao.GetConnection;
+import log.MailTo;
 import model.File_configs;
 import model.File_datas;
 
@@ -26,7 +27,9 @@ public class CrawlToFile {
             ps.setString(2, s);
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
-                new GetConnection().logFile("Checking Process");
+                GetConnection con = new GetConnection();
+                con.logFile("Checking Process");
+                MailTo.sendVerificationEmail(con.logFileToMail("Checking Process"));
                 return true;
             }else{
                 return false;
@@ -41,7 +44,7 @@ public class CrawlToFile {
     public int loadIdDataFileConfig(Connection conn){
         int idDataFileConfig = 0;
         CrawlToFile ctf = new CrawlToFile();
-        String config = "D:\\DW\\DataWarehouse\\Dw_Cinestar\\src\\main\\resources\\config.properties";
+        String config = "A:\\workspace_all_tools\\IntelliJ_space\\DW\\Dw_Cinestar\\src\\main\\resources\\config.properties";
         try {
             // 1.3 kết nối configuration.properties
             InputStream is = new FileInputStream(config);
@@ -70,7 +73,7 @@ public class CrawlToFile {
             String location = folderLocation;
             java.util.Date createdAt = new Date(); // Lấy ngày hiện tại
             Timestamp updatedAt = null; // Chưa có thông tin về ngày cập nhật
-            String createdBy = "Phúc";
+            String createdBy = "Hân";
             String updatedBy = null; // Chưa có thông tin về người cập nhật
 
             // Thay đổi dữ liệu này dựa trên cấu trúc bảng và cột thực tế của bạn
@@ -122,7 +125,9 @@ public class CrawlToFile {
                 dataFileConfig.setDestination(resultSet.getString("destination"));
 //                System.out.println("Co du liệu id config");
             } else {
-                new GetConnection().logFile("Không tìm thấy dữ liệu cho idFileConfig:");
+                GetConnection con = new GetConnection();
+                con.logFile("Không tìm thấy dữ liệu cho idFileConfig:");
+                MailTo.sendVerificationEmail(con.logFileToMail("Không tìm thấy dữ liệu cho idFileConfig:"));
                 System.out.println("Không tìm thấy dữ liệu cho idFileConfig: " + idDataFileConfig);
             }
         } catch (SQLException e) {
@@ -134,18 +139,22 @@ public class CrawlToFile {
     }
 
     public boolean runScript() throws IOException {
-        String path = "D:\\DW\\DataWarehouse\\Dw_Cinestar\\src\\main\\java\\crawl\\crawl1.py";
+        String path = "A:\\workspace_all_tools\\IntelliJ_space\\DW\\Dw_Cinestar\\src\\main\\java\\crawl\\crawl1.py";
         RunPythonScript runScriptPython = new RunPythonScript();
 
         if(runScriptPython.runScript(path) != null) {
             // 1.7.1 nếu thành công thì sẽ trả về tên file .csv và cập nhật logFile load thành  công
             System.out.println("Crawl file success");
-            new GetConnection().logFile("Chạy script data thành công");
+            GetConnection con = new GetConnection();
+            con.logFile("Chạy script data thành công");
+            MailTo.sendVerificationEmail(con.logFileToMail("Chạy script data thành công"));
             return true;
         } else {
             // 1.7.2 nếu không thành công thì sẽ trả về tên file .csv và cập nhật logFile load không thành  công
             System.out.println("Chạy script data không thành công");
-            new GetConnection().logFile("Chạy script data không thành công");
+            GetConnection con = new GetConnection();
+            con.logFile("Chạy script data không thành công");
+            MailTo.sendVerificationEmail(con.logFileToMail("Chạy script data không thành công"));
             return false;
         }
     }
@@ -166,7 +175,7 @@ public class CrawlToFile {
             String note = "Data imported successfully";
             Date createdAt = new Date();
             Timestamp updatedAt = null;
-            String createdBy = "Phúc";
+            String createdBy = "Han";
             String updatedBy = null;
 
             preparedStatement.setLong(1, dfConfig);
@@ -288,7 +297,9 @@ public class CrawlToFile {
             System.out.println("Crawl operation failed.");
             try {
                 // 1.11.2 ghi log vào D:\DataWarehouse\file\logs\file_logs.txt
-                new GetConnection().logFile("Crawl operation failed.");
+                GetConnection con = new GetConnection();
+                con.logFile("Crawl operation failed.");
+                MailTo.sendVerificationEmail(con.logFileToMail("Crawl operation failed."));
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
             }

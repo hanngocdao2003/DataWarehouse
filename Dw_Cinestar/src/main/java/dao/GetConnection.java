@@ -1,9 +1,10 @@
 package dao;
 
+import log.MailTo;
+
 import java.io.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Properties;
@@ -26,7 +27,7 @@ public class GetConnection {
     }
 
     public Connection getConnection(String location) throws IOException {
-        String link = "D:\\DW\\DataWarehouse\\Dw_Cinestar\\src\\main\\resources\\config.properties";
+        String link = "D:\\DataWarehouse\\Dw_Cinestar\\src\\main\\resources\\config.properties";
         Connection result = null;
 
         if (location.equalsIgnoreCase("db_control")) {
@@ -46,6 +47,7 @@ public class GetConnection {
             } catch (Exception e) {
                 System.out.println("Error reading file: " + link);
                 logFile("Error reading file: " + link + "\n" + e.getMessage());
+                MailTo.sendVerificationEmail(logFileToMail("Error reading file: " + link + "\n" + e.getMessage()));
                 throw new IOException("Failed to establish connection", e); // Quăng ngoại lệ thay vì dừng chương trình
             }
         }else if (location.equalsIgnoreCase("db_staging")) {
@@ -65,6 +67,7 @@ public class GetConnection {
             } catch (Exception e) {
                 System.out.println("Error reading file: " + link);
                 logFile("Error reading file: " + link + "\n" + e.getMessage());
+                MailTo.sendVerificationEmail(logFileToMail("Error reading file: " + link + "\n" + e.getMessage()));
                 throw new IOException("Failed to establish connection", e); // Quăng ngoại lệ thay vì dừng chương trình
             }
         }else if (location.equalsIgnoreCase("db_wh")) {
@@ -84,6 +87,7 @@ public class GetConnection {
             } catch (Exception e) {
                 System.out.println("Error reading file: " + link);
                 logFile("Error reading file: " + link + "\n" + e.getMessage());
+                MailTo.sendVerificationEmail(logFileToMail("Error reading file: " + link + "\n" + e.getMessage()));
                 throw new IOException("Failed to establish connection", e); // Quăng ngoại lệ thay vì dừng chương trình
             }
         }else if (location.equalsIgnoreCase("db_mart")) {
@@ -103,6 +107,7 @@ public class GetConnection {
             } catch (Exception e) {
                 System.out.println("Error reading file: " + link);
                 logFile("Error reading file: " + link + "\n" + e.getMessage());
+                MailTo.sendVerificationEmail(logFileToMail("Error reading file: " + link + "\n" + e.getMessage()));
                 throw new IOException("Failed to establish connection", e); // Quăng ngoại lệ thay vì dừng chương trình
             }
         }
@@ -120,11 +125,21 @@ public class GetConnection {
         pw.close();
     }
 
-//    public static void main(String[] args) {
-//        GetConnection conn = new GetConnection();
-//        conn.getConnection("db_control");
-//        if(conn != null){
-//            System.out.println("Success");
-//        }
-//    }
+    public String logFileToMail(String message) throws IOException {
+        StringBuilder re = new StringBuilder();
+        re.append(message + "\t\n");
+        re.append("HH:mm:ss dd/MM/yyyy - "
+                + LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy")));
+        re.append("-----");
+        return re.toString();
+    }
+
+
+    public static void main(String[] args) throws IOException {
+        GetConnection conn = new GetConnection();
+        conn.getConnection("db_control");
+        if(conn != null){
+            System.out.println("Success");
+        }
+    }
 }

@@ -2,6 +2,7 @@ package service;
 
 //import dao.DatabaseConnection;
 import dao.GetConnection;
+import log.MailTo;
 import model.File_configs;
 import model.File_datas;
 
@@ -16,6 +17,8 @@ import java.util.Properties;
 
 public class CrawlToFile {
 
+    static String csvFileName;
+
     public boolean checkProcess(Connection conn, String p, String s) {
         String sql = "SELECT `status`,destination FROM `data_file` \n" +
                 "JOIN data_file_configs ON data_file_configs.id = data_file.id_config\n" +
@@ -26,7 +29,9 @@ public class CrawlToFile {
             ps.setString(2, s);
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
-                new GetConnection().logFile("Checking Process");
+                GetConnection con = new GetConnection();
+                con.logFile("Checking Process");
+                MailTo.sendVerificationEmail(con.logFileToMail("Checking Process"));
                 return true;
             }else{
                 return false;
@@ -70,7 +75,7 @@ public class CrawlToFile {
             String location = folderLocation;
             java.util.Date createdAt = new Date(); // Lấy ngày hiện tại
             Timestamp updatedAt = null; // Chưa có thông tin về ngày cập nhật
-            String createdBy = "Phúc";
+            String createdBy = "Hân";
             String updatedBy = null; // Chưa có thông tin về người cập nhật
 
             // Thay đổi dữ liệu này dựa trên cấu trúc bảng và cột thực tế của bạn
@@ -122,7 +127,9 @@ public class CrawlToFile {
                 dataFileConfig.setDestination(resultSet.getString("destination"));
 //                System.out.println("Co du liệu id config");
             } else {
-                new GetConnection().logFile("Không tìm thấy dữ liệu cho idFileConfig:");
+                GetConnection con = new GetConnection();
+                con.logFile("Không tìm thấy dữ liệu cho idFileConfig:");
+                MailTo.sendVerificationEmail(con.logFileToMail("Không tìm thấy dữ liệu cho idFileConfig:"));
                 System.out.println("Không tìm thấy dữ liệu cho idFileConfig: " + idDataFileConfig);
             }
         } catch (SQLException e) {
@@ -139,13 +146,21 @@ public class CrawlToFile {
 
         if(runScriptPython.runScript(path) != null) {
             // 1.7.1 nếu thành công thì sẽ trả về tên file .csv và cập nhật logFile load thành  công
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
+            String currentDateTime = dateFormat.format(new Date());
+            csvFileName = "movies_data_" + currentDateTime + ".csv";
+            System.out.println("ABCZYX : "+ csvFileName);
             System.out.println("Crawl file success");
-            new GetConnection().logFile("Chạy script data thành công");
+            GetConnection con = new GetConnection();
+            con.logFile("Chạy script data thành công");
+            MailTo.sendVerificationEmail(con.logFileToMail("Chạy script data thành công"));
             return true;
         } else {
             // 1.7.2 nếu không thành công thì sẽ trả về tên file .csv và cập nhật logFile load không thành  công
             System.out.println("Chạy script data không thành công");
-            new GetConnection().logFile("Chạy script data không thành công");
+            GetConnection con = new GetConnection();
+            con.logFile("Chạy script data không thành công");
+            MailTo.sendVerificationEmail(con.logFileToMail("Chạy script data không thành công"));
             return false;
         }
     }
@@ -166,7 +181,7 @@ public class CrawlToFile {
             String note = "Data imported successfully";
             Date createdAt = new Date();
             Timestamp updatedAt = null;
-            String createdBy = "Phúc";
+            String createdBy = "Han";
             String updatedBy = null;
 
             preparedStatement.setLong(1, dfConfig);
@@ -215,7 +230,7 @@ public class CrawlToFile {
     }
 
     private void updateFileName(Connection conn, int dataFileId,String actualFileName) throws SQLException {
-        String updateStatusAndFileNameSql = "UPDATE data_file SET name = ? WHERE id = ?";
+        String updateStatusAndFileNameSql = "UPDATE data_file SET filename = ? WHERE id = ?";
         try (PreparedStatement updateStatement = conn.prepareStatement(updateStatusAndFileNameSql)) {
             updateStatement.setString(1, actualFileName);
             updateStatement.setLong(2, dataFileId);
@@ -271,14 +286,10 @@ public class CrawlToFile {
 
         // 1.11 Kiểm tra crawl có thành công không
         if (runScriptPython) {
+            System.out.println(csvFileName);
             System.out.println("Crawl operation successful.");
             try {
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
-                String currentDateTime = dateFormat.format(new Date());
-
-                String csvFileName = "movies_data_" + currentDateTime + ".csv";
                 // 1.12.1 cập nhật status trong file_datas sang C
-                System.out.println("doan trong phuc"+csvFileName);
                 // 1.12.2 Cập nhật lại tên file
                 CTF.updateStatus(conn, (int) dfFileConfig.getId(), "C", "Data import success");
                 CTF.updateFileName(conn, (int) dfFileConfig.getId(), csvFileName);
@@ -289,7 +300,9 @@ public class CrawlToFile {
             System.out.println("Crawl operation failed.");
             try {
                 // 1.11.2 ghi log vào D:\DataWarehouse\file\logs\file_logs.txt
-                new GetConnection().logFile("Crawl operation failed.");
+                GetConnection con = new GetConnection();
+                con.logFile("Crawl operation failed.");
+                MailTo.sendVerificationEmail(con.logFileToMail("Crawl operation failed."));
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
             }

@@ -9,11 +9,12 @@ public class RunPythonScript {
     public String runScript(String scriptPath) {
         try {
             // Kiểm tra nếu Python có trong PATH hệ thống
-            String pythonExecutable = "C:\\Users\\Windows 10\\IdeaProjects\\PythonSample\\venv\\Scripts\\python.exe";
+            String pythonExecutable = "D:\\dowload\\Android\\python.exe";
 
             // Tạo ProcessBuilder với python và script path
             ProcessBuilder processBuilder = new ProcessBuilder(pythonExecutable, scriptPath);
             Process process = processBuilder.start();
+
 
             // Đọc output của lệnh Python (nếu có)
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
